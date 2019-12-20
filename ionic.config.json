@@ -1,5 +1,7 @@
 {
   "name": "bar-ionic-style",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
