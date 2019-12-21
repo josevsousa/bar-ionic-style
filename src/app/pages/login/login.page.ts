@@ -12,7 +12,6 @@ import { AuthService } from "../../services/auth.service";
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  [x: string]: any;
   @ViewChild(IonSlides, null) slides: IonSlides;
 
   public wavesPosition: number = 0;
@@ -40,11 +39,10 @@ export class LoginPage implements OnInit {
     }
   }
 
-
   async login(){
     await this.presentLoading();
     try {
-      await this.authService.login(this.userRegister);
+      await this.authService.login(this.userLogin);
     } catch (error) {
       console.log(error);
       this.presentToast(error.message);
@@ -52,8 +50,6 @@ export class LoginPage implements OnInit {
       this.loading.dismiss(); //tirar o loading da tela
     }
   }
-
-
 
   async register(){
     await this.presentLoading();
@@ -65,7 +61,6 @@ export class LoginPage implements OnInit {
     }finally{
       this.loading.dismiss(); //tirar o loading da tela
     }
-
   }
 
   async presentLoading() {
