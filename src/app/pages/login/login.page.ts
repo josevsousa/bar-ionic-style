@@ -2,7 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides, LoadingController, ToastController } from '@ionic/angular';
 // import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { Keyboard } from "@ionic-native/keyboard/ngx";
+import { User } from "../../../app/interfaces/user";
 
+import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -10,15 +12,20 @@ import { Keyboard } from "@ionic-native/keyboard/ngx";
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  [x: string]: any;
   @ViewChild(IonSlides, null) slides: IonSlides;
 
   public wavesPosition: number = 0;
   private wavesDifference: number = 100;
-  // public userLogin: User = {};
-  // public userRegister: User = {};
+  public userLogin: User = {};
+  public userRegister: User = {};
   private loading: any;
 
-  constructor(public keyboard: Keyboard) { }
+  constructor(
+    public keyboard: Keyboard,
+    private authService: AuthService,
+    private loadingController: LoadingController,
+    private toastController: ToastController) { }
 
   ngOnInit() {
   }
@@ -33,5 +40,48 @@ export class LoginPage implements OnInit {
     }
   }
 
+
+  async login(){
+    await this.presentLoading();
+    try {
+      await this.authService.login(this.userRegister);
+    } catch (error) {
+      console.log(error);
+      this.presentToast(error.message);
+    }finally{
+      this.loading.dismiss(); //tirar o loading da tela
+    }
+  }
+
+
+
+  async register(){
+    await this.presentLoading();
+    try {
+      await this.authService.register(this.userRegister);
+    } catch (error) {
+      console.log(error);
+      this.presentToast(error.message);
+    }finally{
+      this.loading.dismiss(); //tirar o loading da tela
+    }
+
+  }
+
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      message: 'Por favor, aguarde...',
+      // duration: 2000
+    });
+    return this.loading.present();
+  }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000
+    });
+    toast.present();
+  }
 
 }
