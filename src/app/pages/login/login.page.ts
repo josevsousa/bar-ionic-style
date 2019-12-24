@@ -45,7 +45,14 @@ export class LoginPage implements OnInit {
       await this.authService.login(this.userLogin);
     } catch (error) {
       console.log(error);
-      this.presentToast(error.message);
+      let  message = '';
+      if(error.code == 'auth/user-not-found'){
+        message = 'Usuário invalido'
+      }else{
+        message = error.message;
+      }
+
+      this.presentToast(message);
     }finally{
       this.loading.dismiss(); //tirar o loading da tela
     }

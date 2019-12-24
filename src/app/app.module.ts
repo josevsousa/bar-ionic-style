@@ -14,6 +14,7 @@ import { Keyboard } from "@ionic-native/keyboard/ngx";
 import { AngularFireModule } from "@angular/fire";
 import { environment } from 'src/environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from "@angular/fire/firestore";
 
 import { AuthService } from "./services/auth.service";
 
@@ -25,7 +26,8 @@ import { AuthService } from "./services/auth.service";
     IonicModule.forRoot(), 
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFirestoreModule
   ],
   providers: [
     StatusBar,
