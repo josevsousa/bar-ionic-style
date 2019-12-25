@@ -16,15 +16,15 @@ const routes: Routes = [
     canActivate: [LoginGuard]
   },
   {
-    path: 'detalhes',
-    loadChildren: () => import('./pages/produtos/detalhes/detalhes.module').then( m => m.DetalhesPageModule),
+    path: 'list-products',
+    loadChildren: () => import('./pages/produtos/list-products/list-products.module').then( m => m.ListProductsPageModule),
     canActivate: [AuthGuard]
   },
   {
-    path: 'detalhes:id',
-    loadChildren: () => import('./pages/produtos/detalhes/detalhes.module').then( m => m.DetalhesPageModule),
+    path: 'detalhes-products',
+    loadChildren: () => import('./pages/produtos/detalhes-products/detalhes-products.module').then( m => m.DetalhesProductsPageModule),
     canActivate: [AuthGuard]
-  },
+  }
 ];
 
 @NgModule({

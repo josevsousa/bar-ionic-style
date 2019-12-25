@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-title style="text-align: center;">{{ productTitle }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">Produto</ion-label>
+      <ion-input clearInput type="text" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Descrição</ion-label>
+      <ion-input clearInput type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Valor</ion-label>
+      <ion-input clearInput type="number" min="0" ></ion-input>
+    </ion-item>
+  
+  </ion-list>
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button color="primary" expand="block" >Cadastrar</ion-button>
+    <ion-button color="danger" [routerLink]="['/home']" expand="block">Camcelar</ion-button>
+  </ion-toolbar>
+</ion-footer>

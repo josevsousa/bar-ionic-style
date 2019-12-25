@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from "../../interfaces/product";
-import { Subscriber, Subscription } from 'rxjs';
-import { ProductService } from 'src/app/services/product.service';
+import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: 'app-home',
@@ -10,19 +8,19 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class HomePage implements OnInit {
 
-  private products = new Array<Product>(); 
-  private productsSubscription: Subscription; 
-
-  constructor(private productsService: ProductService) {
-    this.productsSubscription = this.productsService.getProducts().subscribe(date => {
-      this.products = date;
-    });
+  
+  constructor( private authService: AuthService) {
    }
 
   ngOnInit() {
   }
 
-  ngOnDestroy(){
-    this.productsSubscription.unsubscribe();
+  async logout(){
+    try {
+      this.authService.logout();
+    } catch (error) {
+      console.log(error);
+    }
   }
+  
 }
