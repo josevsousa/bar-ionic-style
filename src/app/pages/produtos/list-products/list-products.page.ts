@@ -4,6 +4,7 @@ import { ProdutosService } from 'src/app/services/produtos.service';
 import { LoadingController } from "@ionic/angular";
 import { take } from "rxjs/operators";
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-products',
@@ -14,22 +15,24 @@ export class ListProductsPage implements OnInit {
 
   produtos$: Observable<Produto[]>;
   totalProdutos: number;
-  private loading: any;
+  public loading: any;
  
   constructor(
       private produtosService: ProdutosService,
       public loadingController: LoadingController,
-
+      private router: Router
     ) { }
    
  
   ngOnInit() {
+
+    // carregando o loading na view
     this.presentLoadin();
   
     //buscando produtos
     this.produtos$ = this.produtosService.produtos.valueChanges();
     this.produtos$
-      .pipe(take(2))
+      .pipe(take(4))
       .subscribe(() => this.loading.dismiss()); 
 
     // total produtos 
@@ -45,6 +48,12 @@ export class ListProductsPage implements OnInit {
   }
 
   ngOnDestroy(){
+    this.loading = null;
+  }
+
+  ngEdit(produto: Produto){
+    this.produtosService.setEditProduto(produto);
+    this.router.navigateByUrl('/detalhes-products');
   }
 
 }

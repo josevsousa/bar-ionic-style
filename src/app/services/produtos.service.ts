@@ -11,11 +11,14 @@ export class ProdutosService {
   // produtos do firebase
   produtos: AngularFirestoreCollection<Produto>;
 
+  // objeto Edit
+  produtoEdit: any;
+
   constructor(private db: AngularFirestore) {
     this.setProdutos();
    }
 
-   private setProdutos(){
+   private setProdutos(){ 
     this.produtos = this.db.collection<Produto>('/produtos',
       (ref: CollectionReference) => ref.orderBy('nome', 'asc')
     );
@@ -29,7 +32,8 @@ export class ProdutosService {
           codigo: produto.codigo,
           nome: (produto.nome).toLocaleLowerCase(),
           valor: produto.valor,
-          descricao: (produto.descricao).toLocaleLowerCase()
+          descricao: (produto.descricao).toLocaleLowerCase(),
+          dataCreate: new Date()
         })
    }
 
@@ -46,4 +50,9 @@ export class ProdutosService {
    get(uid: string): Observable<Produto>{
      return this.produtos.doc<Produto>(uid).valueChanges();
    }
+
+  //  edit
+  setEditProduto(produto: Produto){
+    this.produtoEdit = produto;
+  }
 }

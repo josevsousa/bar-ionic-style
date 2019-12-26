@@ -11,8 +11,9 @@
 <ion-content>
   <ion-list>
     <ion-list-header>
-      <ion-label>Produtos {{totalProdutos}}</ion-label>
+      <ion-label>Produtos {{totalProdutos}} </ion-label>
     </ion-list-header>
+    <!-- fim loading -->
     <ion-item-sliding *ngFor="let produto of produtos$ | async">
       <ion-item>
         <ion-label>
@@ -20,10 +21,11 @@
           <h3>{{produto.valor | currency: 'BRL'}}</h3>
           <p>{{produto.descricao}}</p>
         </ion-label>
+        <ion-note slot="start" color="tertiary">{{produto.codigo}}</ion-note>
       </ion-item>
-      <!-- butoes edt e del -->
+      <!-- butoes edit e del -->
       <ion-item-options side="start">
-        <ion-item-option color="primary">Editar</ion-item-option>
+        <ion-item-option color="primary" (click)="ngEdit(produto)">Editar</ion-item-option>
       </ion-item-options>
       <ion-item-options side="end">
         <ion-item-option color="danger">Delete</ion-item-option>
@@ -31,3 +33,9 @@
     </ion-item-sliding>
   </ion-list>
 </ion-content>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['/detalhes-products']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
