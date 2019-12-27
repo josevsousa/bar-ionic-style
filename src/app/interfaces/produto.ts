@@ -4,5 +4,5 @@ export interface Produto{
     nome: string;
     valor: number;
     descricao?: string;
-    dataCreate: Date
+    dataCreate?: Date
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Produto } from 'src/app/interfaces/produto';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ProdutosService } from 'src/app/services/produtos.service';
 
@@ -20,13 +20,13 @@ export class DetalhesProductsPage implements OnInit {
     codigo: null,
     nome: '',
     valor: null,
-    descricao: '',
-    dataCreate: null
+    descricao: ''
   }
   validar: boolean = true;
 
   constructor(
-    private produtosService: ProdutosService
+    private produtosService: ProdutosService,
+    private router: Router
   ) { }
 
   ngOnInit() { 
@@ -42,8 +42,20 @@ export class DetalhesProductsPage implements OnInit {
     }  
   }
   
-  ngSubmit(){
-    console.log(this.novoProduto)
+  onSave(){
+ 
+    const operation: Promise<void> = 
+      (!this.novoProduto.uid)
+        ? this.produtosService.create(this.novoProduto)
+        : this.produtosService.update(this.novoProduto);
+
+      operation
+       .then(()=>{
+        this.router.navigateByUrl('/home');
+       })
+       .catch((error)=>{
+         console.log(error);
+       })
   }
 
   ngValidar(){
