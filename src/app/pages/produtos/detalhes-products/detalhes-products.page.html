@@ -11,17 +11,25 @@
       <ion-input type="number" disabled [(ngModel)]="novoProduto.codigo" ></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Produto <ion-text color="danger">*</ion-text></ion-label>
+      <ion-label position="floating">Nome <ion-text color="danger">*</ion-text></ion-label>
       <ion-input type="text" (keyup)="ngValidar()" [(ngModel)]="novoProduto.nome" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">ML <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input type="number" (keyup)="ngValidar()" [(ngModel)]="novoProduto.ml" ></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Valor <ion-text color="danger">*</ion-text></ion-label>
       <ion-input  type="number" (keyup)="ngValidar()" [(ngModel)]="novoProduto.valor"></ion-input>
     </ion-item>  
     <ion-item>
-        <ion-label position="floating">Descrição</ion-label>
-        <ion-input  type="text" [(ngModel)]="novoProduto.descricao"></ion-input>
-      </ion-item>
+      <ion-label position="floating">Descrição</ion-label>
+      <ion-input  type="text" [(ngModel)]="novoProduto.descricao"></ion-input>
+    </ion-item>  
+    <ion-item>
+      <ion-label position="floating">Estoque</ion-label>
+      <ion-input  type="text" [(ngModel)]="novoProduto.estoque"></ion-input>
+    </ion-item>
   </ion-list>
 
 </ion-content>

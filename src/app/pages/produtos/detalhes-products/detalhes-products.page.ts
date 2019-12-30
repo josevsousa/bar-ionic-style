@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Produto } from 'src/app/interfaces/produto';
-import { LoadingController, ToastController } from '@ionic/angular';
-import { AuthService } from 'src/app/services/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 import { ProdutosService } from 'src/app/services/produtos.service';
 
@@ -19,21 +18,24 @@ export class DetalhesProductsPage implements OnInit {
   novoProduto: Produto = {
     codigo: null,
     nome: '',
+    ml: null,
     valor: null,
-    descricao: ''
+    descricao: '',
+    estoque: null
   }
   validar: boolean = true;
 
   constructor(
     private produtosService: ProdutosService,
-    private router: Router
+    private router: Router,
+    private toastController: ToastController
   ) { }
 
   ngOnInit() { 
     // ver se esta vindo algum produto
-    const p: any = this.produtosService.produtoEdit; 
-    if( p != undefined){
-      this.novoProduto = p;
+    const produtoOk: any = this.produtosService.produtoEdit; 
+    if( produtoOk != undefined){
+      this.novoProduto = produtoOk;
       this.productTitle = "Editar Produto";
       this.btTitle = "Alterar";
       this.validar = false;
@@ -43,7 +45,7 @@ export class DetalhesProductsPage implements OnInit {
   }
   
   onSave(){
- 
+    // envia o produto para create ou update
     const operation: Promise<void> = 
       (!this.novoProduto.uid)
         ? this.produtosService.create(this.novoProduto)
@@ -51,13 +53,19 @@ export class DetalhesProductsPage implements OnInit {
 
       operation
        .then(()=>{
-        this.router.navigateByUrl('/home');
+        // feedback do crud 
+        (!this.novoProduto.uid)  
+          ? this.presentToast("Criado com sucesso!")
+          : this.presentToast(`${this.novoProduto.nome} atualizado!!!`);
+        
+          this.router.navigateByUrl('/home');
        })
        .catch((error)=>{
          console.log(error);
        })
   }
 
+  // validar o bt submit
   ngValidar(){
     if (this.novoProduto.nome == '' || this.novoProduto.valor == null) {
       this.validar = true;
@@ -65,7 +73,6 @@ export class DetalhesProductsPage implements OnInit {
       this.validar = false;
     }
   }
-
 
   maiorCodigo(): void{
     this.produtosService.produtos.valueChanges().forEach(i => {
@@ -77,6 +84,12 @@ export class DetalhesProductsPage implements OnInit {
       });
       this.novoProduto.codigo = maiorCod+1;
     });
+  }
+
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({ message, duration: 2000 });
+    toast.present();
   }
 
 }

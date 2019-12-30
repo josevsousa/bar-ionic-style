@@ -15,14 +15,10 @@ export class ProdutosService {
   produtoEdit: any;
 
   constructor(private db: AngularFirestore) {
-    this.setProdutos();
-   }
-
-   private setProdutos(){ 
     this.produtos = this.db.collection<Produto>('/produtos',
       (ref: CollectionReference) => ref.orderBy('nome', 'asc')
-    );
-   }
+    ); 
+  }
 
    create(produto: Produto): Promise<void>{
       const uid = this.db.createId();
@@ -31,8 +27,10 @@ export class ProdutosService {
           uid,
           codigo: produto.codigo,
           nome: (produto.nome).toLocaleLowerCase(),
+          ml: produto.ml,
           valor: produto.valor,
           descricao: (produto.descricao).toLocaleLowerCase(),
+          estoque: produto.estoque,
           dataCreate: new Date()
         })
    }

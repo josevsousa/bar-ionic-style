@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Produto } from "../../../interfaces/produto";
 import { ProdutosService } from 'src/app/services/produtos.service';
-import { LoadingController } from "@ionic/angular";
+import { LoadingController, ToastController } from "@ionic/angular";
 import { take } from "rxjs/operators";
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -20,6 +20,7 @@ export class ListProductsPage implements OnInit {
   constructor(
       private produtosService: ProdutosService,
       public loadingController: LoadingController,
+      private toastController: ToastController,
       private router: Router
     ) { }
    
@@ -51,9 +52,20 @@ export class ListProductsPage implements OnInit {
     this.loading = null;
   }
 
+  // passagem do produto para a page detalhes-products
   ngEdit(produto: Produto){
     this.produtosService.setEditProduto(produto);
     this.router.navigateByUrl('/detalhes-products');
+  }
+
+  ngDelete(produto: Produto){
+    this.produtosService.delete(produto);
+    this.presentToast("Produto deletado!");
+  }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({ message, duration: 2000 });
+    toast.present();
   }
 
 }
