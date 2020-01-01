@@ -1,3 +1,22 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-split-pane contentId="main-content">
+    <ion-menu side="start" menuId="custom" class="my-custom-menu" contentId="main-content">
+      <ion-header>
+          <ion-toolbar color="primary">
+            <ion-title>Menu BarStyle</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
+          <ion-list>
+            <ion-menu-toggle auto-hide="false">
+              <ion-item [routerDirection]="'root'" [routerLink]="'/list-products'" (click)="openEnd()">
+                <ion-icon name="pricetags" slot="start"></ion-icon>
+                <ion-label>Produtos</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </ion-list>
+        </ion-content>
+      </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>

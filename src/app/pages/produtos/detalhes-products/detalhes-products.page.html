@@ -10,6 +10,17 @@
       <ion-label position="floating">Código <ion-text color="danger">*</ion-text></ion-label>
       <ion-input type="number" disabled [(ngModel)]="novoProduto.codigo" ></ion-input>
     </ion-item>
+  
+    <ion-item>
+      <ion-label>Tipo</ion-label>
+      <ion-select [(ngModel)]="novoProduto.tipo">
+        <ion-select-option value="cerveja">Cerveja</ion-select-option>
+        <ion-select-option value="whiske">Whiske</ion-select-option>
+        <ion-select-option value="vilho">Vinho</ion-select-option>
+        <ion-select-option value="agua">Agua</ion-select-option>
+      </ion-select>
+    </ion-item>
+
     <ion-item>
       <ion-label position="floating">Nome <ion-text color="danger">*</ion-text></ion-label>
       <ion-input type="text" (keyup)="ngValidar()" [(ngModel)]="novoProduto.nome" ></ion-input>
@@ -28,7 +39,7 @@
     </ion-item>  
     <ion-item>
       <ion-label position="floating">Estoque</ion-label>
-      <ion-input  type="text" [(ngModel)]="novoProduto.estoque"></ion-input>
+      <ion-input  type="number" [(ngModel)]="novoProduto.estoque"></ion-input>
     </ion-item>
   </ion-list>
 

@@ -22,5 +22,7 @@ export class HomePage implements OnInit {
       console.log(error);
     }
   }
+
+  
   
 }

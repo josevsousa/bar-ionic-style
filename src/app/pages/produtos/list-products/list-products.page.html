@@ -2,7 +2,7 @@
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="home"></ion-back-button>
-      <ion-title style="text-align: center;">lista de produtos</ion-title>
+      <ion-title style="text-align: center;">{{totalProdutos}} produtos</ion-title>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -10,18 +10,19 @@
 
 <ion-content>
   <ion-list>
-    <ion-list-header>
+    <!-- <ion-list-header>
       <ion-label>Produtos {{totalProdutos}} </ion-label>
-    </ion-list-header>
+    </ion-list-header> -->
     <!-- fim loading -->
     <ion-item-sliding *ngFor="let produto of produtos$ | async">
       <ion-item>
         <ion-label>
-          <h2>{{produto.nome}} {{produto.ml}}ML</h2>
+          <h2><span class="codigo">{{produto.codigo}}</span>  {{produto.nome}} {{produto.ml}}ML</h2>
           <h3>{{produto.valor | currency: 'BRL'}}</h3>
           <p>{{produto.descricao}}</p>
         </ion-label>
-        <ion-note slot="end" color="tertiary">( {{produto.estoque}} )</ion-note>
+        <!-- <ion-note slot="end" color="tertiary">( {{produto.estoque}} )</ion-note> -->
+        <ion-badge slot="end" color="medium">{{produto.estoque}}</ion-badge>
       </ion-item>
       <!-- butoes edit e del -->
       <ion-item-options side="start">

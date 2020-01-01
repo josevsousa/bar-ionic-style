@@ -27,6 +27,7 @@ export class ProdutosService {
           uid,
           codigo: produto.codigo,
           nome: (produto.nome).toLocaleLowerCase(),
+          tipo: produto.tipo,
           ml: produto.ml,
           valor: produto.valor,
           descricao: (produto.descricao).toLocaleLowerCase(),

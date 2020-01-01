@@ -59,6 +59,7 @@ export class ListProductsPage implements OnInit {
   }
 
   ngDelete(produto: Produto){
+    console.log(produto);
     this.produtosService.delete(produto);
     this.presentToast("Produto deletado!");
   }

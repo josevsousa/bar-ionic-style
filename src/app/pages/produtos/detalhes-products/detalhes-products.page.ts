@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Produto } from 'src/app/interfaces/produto';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -14,10 +14,11 @@ export class DetalhesProductsPage implements OnInit {
 
   productTitle: string = "Novo Produto";
   btTitle: string = "Cadastrar";
-
+  teste: string = "agua";
   novoProduto: Produto = {
     codigo: null,
     nome: '',
+    tipo: '',
     ml: null,
     valor: null,
     descricao: '',
@@ -29,7 +30,8 @@ export class DetalhesProductsPage implements OnInit {
     private produtosService: ProdutosService,
     private router: Router,
     private toastController: ToastController
-  ) { }
+  ) {
+   }
 
   ngOnInit() { 
     // ver se esta vindo algum produto
@@ -42,6 +44,11 @@ export class DetalhesProductsPage implements OnInit {
     }else{
       this.maiorCodigo();
     }  
+  }
+
+  ngOnDestroy(){
+    this.produtosService.produtoEdit = undefined;
+    console.log('destruido');
   }
   
   onSave(){
