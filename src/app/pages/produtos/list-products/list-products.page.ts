@@ -16,10 +16,11 @@ export class ListProductsPage implements OnInit {
   produtos$: Observable<Produto[]>;
   totalProdutos: number;
   public loading: any;
+  loadList: boolean = true;
  
   constructor(
       private produtosService: ProdutosService,
-      public loadingController: LoadingController,
+      // public loadingController: LoadingController,
       private toastController: ToastController,
       private router: Router
     ) { }
@@ -28,13 +29,13 @@ export class ListProductsPage implements OnInit {
   ngOnInit() {
 
     // carregando o loading na view
-    this.presentLoadin();
+    // this.presentLoadin();
   
     //buscando produtos
     this.produtos$ = this.produtosService.produtos.valueChanges();
     this.produtos$
-      .pipe(take(4))
-      .subscribe(() => this.loading.dismiss()); 
+      .pipe(take(2))
+      .subscribe(() => this.loadList = false); 
 
     // total produtos 
     this.produtos$.forEach(data=>{
@@ -43,13 +44,13 @@ export class ListProductsPage implements OnInit {
 
   }
 
-  async presentLoadin(){
-    this.loading = await this.loadingController.create({ message: 'Carregando' });
-    return this.loading.present();
-  }
+  // async presentLoadin(){
+  //   this.loading = await this.loadingController.create({ message: 'Carregando' });
+  //   return this.loading.present();
+  // }
 
   ngOnDestroy(){
-    this.loading = null;
+    // this.loading = null;
   }
 
   // passagem do produto para a page detalhes-products

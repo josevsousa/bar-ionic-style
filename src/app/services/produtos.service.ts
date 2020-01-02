@@ -54,4 +54,5 @@ export class ProdutosService {
   setEditProduto(produto: Produto){
     this.produtoEdit = produto;
   }
+  
 }
