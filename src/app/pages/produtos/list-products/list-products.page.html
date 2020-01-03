@@ -1,19 +1,22 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
+    <!-- <ion-buttons slot="start">
       <ion-back-button defaultHref="home"></ion-back-button>
-      <ion-title style="text-align: center;">{{totalProdutos}} produtos</ion-title>
-    </ion-buttons>
+      <ion-title style="text-align: center;">{{totalProdutos}} Produtos</ion-title>
+    </ion-buttons> -->
+
+    <ion-buttons slot="start">
+        <ion-button [routerLink]="['/home']">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+      <ion-title>Produtos</ion-title>
+      </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
-
-
-<!-- loadin -->
-   
-<ion-list *ngIf="loadList">
+  <!-- loadin -->
+  <ion-list *ngIf="loadList">
     <ion-item *ngFor="let item of [0, 1, 2, 3, 4]">
       <ion-avatar slot="start">
         <ion-skeleton-text animated></ion-skeleton-text>
@@ -31,8 +34,7 @@
       </ion-label>
     </ion-item>
   </ion-list>
-
-<!-- fim loadin -->
+  <!-- fim loadin -->
 
   <ion-list>
     <!-- <ion-list-header>
@@ -42,7 +44,7 @@
     <ion-item-sliding *ngFor="let produto of produtos$ | async">
       <ion-item>
         <ion-label>
-          <h2><span class="codigo">{{produto.codigo}}</span>  {{produto.nome}} {{produto.ml}}ML</h2>
+          <h2><span class="codigo">{{produto.codigo}}</span> {{produto.nome|primeiraMaiuscula}} {{produto.ml}}ML</h2>
           <h3>{{produto.valor | currency: 'BRL'}}</h3>
           <p>{{produto.descricao}}</p>
         </ion-label>
@@ -61,7 +63,7 @@
 </ion-content>
 
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button [routerLink]="['/detalhes-products']">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  <ion-fab-button [routerLink]="['/detalhes-products']">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

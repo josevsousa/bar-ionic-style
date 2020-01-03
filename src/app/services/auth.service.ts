@@ -7,9 +7,13 @@ import { User } from '../interfaces/user';
 })
 export class AuthService {
 
+  user: any;
+
   constructor(
     private afs: AngularFireAuth
-  ) { }
+  ) {
+    this.getAuthStatus();
+   }
 
   login(user: User){
     return this.afs.auth.signInWithEmailAndPassword(user.email, user.password);
@@ -23,7 +27,17 @@ export class AuthService {
     return this.afs.auth.signOut();
   }
 
+
   getAuth(){
     return this.afs.auth;
+  }  
+    
+  getAuthStatus(){
+    this.afs.auth.onAuthStateChanged((user)=>{
+      this.user = user;
+    })
   }
+
+
+
 }

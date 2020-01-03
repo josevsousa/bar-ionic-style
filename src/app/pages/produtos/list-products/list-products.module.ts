@@ -8,6 +8,8 @@ import { ListProductsPageRoutingModule } from './list-products-routing.module';
 
 import { ListProductsPage } from './list-products.page';
 
+import { primeiraMaiusculaPipe } from "../../../pipes/primeira-maiuscula.pipe";
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +17,9 @@ import { ListProductsPage } from './list-products.page';
     IonicModule,
     ListProductsPageRoutingModule
   ],
-  declarations: [ListProductsPage]
+  declarations: [
+    ListProductsPage,
+    primeiraMaiusculaPipe
+  ]
 })
 export class ListProductsPageModule {}

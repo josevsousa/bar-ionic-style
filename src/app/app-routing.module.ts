@@ -24,6 +24,26 @@ const routes: Routes = [
     path: 'detalhes-products',
     loadChildren: () => import('./pages/produtos/detalhes-products/detalhes-products.module').then( m => m.DetalhesProductsPageModule),
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'list-despesas',
+    loadChildren: () => import('./pages/despesas/list-despesas/list-despesas.module').then( m => m.ListDespesasPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'detalhes-despesass',
+    loadChildren: () => import('./pages/despesas/detalhes-despesas/detalhes-despesas.module').then( m => m.DetalhesDespesasPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'list-despesas',
+    loadChildren: () => import('./pages/despesas/list-despesas/list-despesas.module').then( m => m.ListDespesasPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'detalhes-despesas',
+    loadChildren: () => import('./pages/despesas/detalhes-despesas/detalhes-despesas.module').then( m => m.DetalhesDespesasPageModule),
+    canActivate: [AuthGuard]
   }
 ];
 

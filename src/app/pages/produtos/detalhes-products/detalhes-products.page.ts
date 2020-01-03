@@ -14,7 +14,6 @@ export class DetalhesProductsPage implements OnInit {
 
   productTitle: string = "Novo Produto";
   btTitle: string = "Cadastrar";
-  teste: string = "agua";
   novoProduto: Produto = {
     codigo: null,
     nome: '',
@@ -48,7 +47,6 @@ export class DetalhesProductsPage implements OnInit {
 
   ngOnDestroy(){
     this.produtosService.produtoEdit = undefined;
-    console.log('destruido');
   }
   
   onSave(){
@@ -62,10 +60,10 @@ export class DetalhesProductsPage implements OnInit {
        .then(()=>{
         // feedback do crud 
         (!this.novoProduto.uid)  
-          ? this.presentToast("Criado com sucesso!")
-          : this.presentToast(`${this.novoProduto.nome} atualizado!!!`);
+          ? this.presentToast("Salvando...")
+          : this.presentToast(`Atualizando ${this.novoProduto.nome} ...`);
         
-          this.router.navigateByUrl('/home');
+          setTimeout( () => this.router.navigateByUrl('/list-products') , 1950 );
        })
        .catch((error)=>{
          console.log(error);
@@ -95,7 +93,7 @@ export class DetalhesProductsPage implements OnInit {
 
 
   async presentToast(message: string) {
-    const toast = await this.toastController.create({ message, duration: 2000 });
+    const toast = await this.toastController.create({ message, duration: 1600 });
     toast.present();
   }
 

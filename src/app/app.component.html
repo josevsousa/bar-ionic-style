@@ -3,8 +3,15 @@
     <ion-menu side="start" menuId="custom" class="my-custom-menu" contentId="main-content">
       <ion-header>
           <ion-toolbar color="primary">
-            <ion-title>Menu BarStyle</ion-title>
-          </ion-toolbar>
+              <ion-buttons slot="primary" >
+                <ion-button (click)="this.authService.logout()" >
+                  <ion-icon slot="icon-only" name="log-out" *ngIf="this.authService.user"></ion-icon>
+                  <ion-icon slot="icon-only" name="log-in" *ngIf="!this.authService.user"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+              <ion-title>Menu BarStyle</ion-title>
+            </ion-toolbar>
+
         </ion-header>
         <ion-content>
           <ion-list>
@@ -12,6 +19,10 @@
               <ion-item [routerDirection]="'root'" [routerLink]="'/list-products'" (click)="openEnd()">
                 <ion-icon name="pricetags" slot="start"></ion-icon>
                 <ion-label>Produtos</ion-label>
+              </ion-item>
+              <ion-item [routerDirection]="'root'" [routerLink]="'/list-despesas'">
+                <ion-icon name="analytics" slot="start"></ion-icon>
+                <ion-label>Despesas</ion-label>
               </ion-item>
             </ion-menu-toggle>
           </ion-list>

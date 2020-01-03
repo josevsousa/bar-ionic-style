@@ -1,0 +1,12 @@
+<!-- <div *ngIf="auth.afs.user | async; then autenticated else guest"></div>  -->
+
+<ng-template #autenticated>
+  <!-- <div *ngIf="auth.afs.user | async as user"> -->
+      <!-- <img class="navBarImg" src="user.photoURL" alt=""> -->
+  <!-- </div> -->
+
+</ng-template>
+
+<ng-template #guest>
+    <ion-icon slot="icon-only" name="contact"></ion-icon>
+</ng-template>

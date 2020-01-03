@@ -13,8 +13,8 @@
     </ion-item>
   
     <ion-item>
-      <ion-label>Tipo</ion-label>
-      <ion-select [(ngModel)]="novoProduto.tipo">
+      <ion-label>Tipo <ion-text color="danger">*</ion-text></ion-label>
+      <ion-select (keyup)="ngValidar()" [(ngModel)]="novoProduto.tipo">
         <ion-select-option value="cerveja">Cerveja</ion-select-option>
         <ion-select-option value="whiske">Whiske</ion-select-option>
         <ion-select-option value="vilho">Vinho</ion-select-option>
@@ -36,7 +36,7 @@
     </ion-item>  
     <ion-item>
       <ion-label position="floating">Descrição</ion-label>
-      <ion-input  type="text" [(ngModel)]="novoProduto.descricao"></ion-input>
+      <ion-textarea  [(ngModel)]="novoProduto.descricao"></ion-textarea>
     </ion-item>  
     <ion-item>
       <ion-label position="floating">Estoque</ion-label>
@@ -49,6 +49,6 @@
 <ion-footer>
   <ion-toolbar>
     <ion-button color="primary" expand="block" (click)="onSave()" [disabled]="validar">{{btTitle}}</ion-button>
-    <ion-button color="danger" [routerLink]="['/home']" expand="block">Camcelar</ion-button>
+    <ion-button color="danger" [routerLink]="['/list-products']" expand="block">Cancelar</ion-button>
   </ion-toolbar>
 </ion-footer>

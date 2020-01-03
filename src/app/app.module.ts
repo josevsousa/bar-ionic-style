@@ -17,16 +17,18 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 
 import { AuthService } from "./services/auth.service";
-import { CurrencyRealPipe } from './pipes/currency-real.pipe';
+
 
 @NgModule({
-  declarations: [AppComponent, CurrencyRealPipe],
+  declarations: [
+    AppComponent
+  ],
   entryComponents: [],
   imports: [
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireModule.initializeApp( environment.firebaseConfig ),
     AngularFireAuthModule,
     AngularFirestoreModule
   ],
