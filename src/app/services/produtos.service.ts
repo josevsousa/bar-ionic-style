@@ -50,7 +50,7 @@ export class ProdutosService {
      return this.produtos.doc<Produto>(uid).valueChanges();
    }
 
-  //  edit
+  // produto enviado da page list para a page detalhes 
   setEditProduto(produto: Produto){
     this.produtoEdit = produto;
   }

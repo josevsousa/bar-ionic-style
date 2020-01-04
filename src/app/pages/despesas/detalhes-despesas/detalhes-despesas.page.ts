@@ -3,7 +3,6 @@ import { Despesa } from "../../../interfaces/despesa";
 import { ToastController } from "@ionic/angular";
 import { Router } from "@angular/router";
 import { DespesasService } from 'src/app/services/despesas.service';
-import { timeout } from 'rxjs/operators';
 
 @Component({
   selector: 'app-detalhes-despesas',
@@ -31,11 +30,39 @@ export class DetalhesDespesasPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    //ver se esta vindo alguma despesa
+    const despesaOk: any = this.despesasService.despesaEdit;
+    if( despesaOk != undefined ){
+      this.novaDespesa = despesaOk;
+      this.despesaTitle = "Editar Despesa";
+      this.btTitle = "Alterar";
+      this.validar = false;
+    }
+  }
+
+  ngOnDestroy(){
+    this.despesasService.despesaEdit = undefined;
   }
   
   onSave(){
-    this.presentToast('Salvando....');
-    setTimeout( () => this.router.navigateByUrl('/list-despesas') , 1950 );
+    // envia a despesa para create ou update
+    const operation: Promise<void> =
+      (!this.novaDespesa.uid)
+        ? this.despesasService.create(this.novaDespesa)
+        : this.despesasService.update(this.novaDespesa);
+
+      operation
+        .then(()=>{
+          // feedback do crud
+          (!this.novaDespesa.uid)
+            ? this.presentToast('Salvando....')
+            : this.presentToast('Atualizando...');
+
+            setTimeout( () => this.router.navigateByUrl('/list-despesas') , 1950 );
+        })
+        .catch((error)=>{
+          console.log(error);
+        })
   }
 
   // validar o bt submit

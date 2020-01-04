@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Produto } from "../../../interfaces/produto";
 import { ProdutosService } from 'src/app/services/produtos.service';
-import { LoadingController, ToastController } from "@ionic/angular";
+import { ToastController } from "@ionic/angular";
 import { take } from "rxjs/operators";
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';

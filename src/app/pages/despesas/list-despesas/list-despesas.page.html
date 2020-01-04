@@ -12,7 +12,7 @@
 <ion-content>
  <!-- loadin -->
  <!-- <ion-list *ngIf="loadList"> -->
-  <ion-list>
+  <ion-list *ngIf="loadList">
   <ion-item *ngFor="let item of [0, 1, 2, 3, 4]">
     <ion-avatar slot="start">
       <ion-skeleton-text animated></ion-skeleton-text>
@@ -31,6 +31,27 @@
   </ion-item>
 </ion-list>
 <!-- fim loadin -->
+<ion-list>
+  <ion-item-sliding *ngFor="let despesa of despesas$ | async">
+    <ion-item>
+      <ion-label>
+        <h2>{{ despesa.nome | primeiraMaiuscula }}</h2>
+        <h3>{{ despesa.valor | currency: 'BRL' }}</h3>
+        <p>{{despesa.descricao}}</p>
+      </ion-label>
+      <!-- <ion-note slot="end" color="tertiary">( {{produto.estoque}} )</ion-note> -->
+      <!-- <ion-badge slot="end" color="medium">{{produto.estoque}}</ion-badge> -->
+    </ion-item>
+    <!-- butoes edit e del -->
+    <ion-item-options side="start">
+      <ion-item-option color="primary" (click)="ngEdit(despesa)">Editar</ion-item-option>
+    </ion-item-options>
+    <ion-item-options side="end">
+      <ion-item-option color="danger" (click)="ngDelete(despesa)">Delete</ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
+
 </ion-content>
 
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">

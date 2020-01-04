@@ -1,7 +1,8 @@
 export interface Despesa {
-    uid?:string;
-    nome:string;
-    tipo:string;
+    uid?: string;
+    nome: string;
+    tipo: string;
     valor: number;
-    descricao: string;
+    descricao?: string;
+    dataCreate?: Date
 }
