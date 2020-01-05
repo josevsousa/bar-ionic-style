@@ -19,6 +19,8 @@ export class DetalhesProductsPage implements OnInit {
     nome: '',
     tipo: '',
     ml: null,
+    mlDose: "50",
+    lucroDose: 150,
     valor: null,
     descricao: '',
     estoque: null

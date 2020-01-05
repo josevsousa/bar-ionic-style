@@ -8,7 +8,7 @@ import { ListProductsPageRoutingModule } from './list-products-routing.module';
 
 import { ListProductsPage } from './list-products.page';
 
-import { primeiraMaiusculaPipe } from "../../../pipes/primeira-maiuscula.pipe";
+// import { primeiraMaiusculaPipe } from "../../../pipes/primeira-maiuscula.pipe";
 
 @NgModule({
   imports: [
@@ -19,7 +19,7 @@ import { primeiraMaiusculaPipe } from "../../../pipes/primeira-maiuscula.pipe";
   ],
   declarations: [
     ListProductsPage,
-    primeiraMaiusculaPipe
+    // primeiraMaiusculaPipe
   ]
 })
 export class ListProductsPageModule {}

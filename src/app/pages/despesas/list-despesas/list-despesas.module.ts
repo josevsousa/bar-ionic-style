@@ -9,7 +9,7 @@ import { ListDespesasPageRoutingModule } from './list-despesas-routing.module';
 import { ListDespesasPage } from './list-despesas.page';
 
 
-import { primeiraMaiusculaPipe } from "../../../pipes/primeira-maiuscula.pipe";
+  import { primeiraMaiusculaPipe } from "../../../pipes/primeira-maiuscula.pipe";
 
 @NgModule({
   imports: [

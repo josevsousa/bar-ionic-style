@@ -4,6 +4,8 @@ export interface Produto{
     nome: string;
     tipo: string;
     ml: number;
+    mlDose?: string;
+    lucroDose?: number;
     valor: number;
     descricao?: string;
     estoque?: number;

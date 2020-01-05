@@ -9,7 +9,7 @@
         <ion-button [routerLink]="['/home']">
         <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
       </ion-button>
-      <ion-title>Produtos</ion-title>
+      <ion-title> {{totalProdutos}} Produtos</ion-title>
       </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -44,11 +44,12 @@
     <ion-item-sliding *ngFor="let produto of produtos$ | async">
       <ion-item>
         <ion-label>
-          <h2><span class="codigo">{{produto.codigo}}</span> {{produto.nome|primeiraMaiuscula}} {{produto.ml}}ML</h2>
-          <h3>{{produto.valor | currency: 'BRL'}}</h3>
-          <p>{{produto.descricao}}</p>
+          <!-- <h2><span class="codigo">{{produto.codigo}}</span> {{produto.nome}} {{produto.ml}}ML</h2> -->
+          <h2>{{produto.nome}} {{produto.ml}}ML</h2>
+          <h3>Valor Un: {{produto.valor | currency: 'BRL'}}</h3>
+          <!-- <p>{{produto.descricao}}</p> -->
+          <p *ngIf="validaTipoDeBebida(produto)">{{valorDose(produto)[1]}}-doses: {{valorDose(produto)[0]|currency: 'BRL'}} {{produto.mlDose}}ml {{produto.lucroDose}}%</p>
         </ion-label>
-        <!-- <ion-note slot="end" color="tertiary">( {{produto.estoque}} )</ion-note> -->
         <ion-badge slot="end" color="medium">{{produto.estoque}}</ion-badge>
       </ion-item>
       <!-- butoes edit e del -->
@@ -64,6 +65,7 @@
 
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">
   <ion-fab-button [routerLink]="['/detalhes-products']">
+  <!-- <ion-fab-button (click)="atualizarItems()"> -->
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
 </ion-fab>

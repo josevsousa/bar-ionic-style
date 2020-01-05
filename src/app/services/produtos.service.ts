@@ -29,6 +29,7 @@ export class ProdutosService {
           nome: (produto.nome).toLocaleLowerCase(),
           tipo: produto.tipo,
           ml: produto.ml,
+          mlDose: produto.mlDose,
           valor: produto.valor,
           descricao: (produto.descricao).toLocaleLowerCase(),
           estoque: produto.estoque,
@@ -54,5 +55,6 @@ export class ProdutosService {
   setEditProduto(produto: Produto){
     this.produtoEdit = produto;
   }
+
   
 }

@@ -15,10 +15,15 @@
     <ion-item>
       <ion-label>Tipo <ion-text color="danger">*</ion-text></ion-label>
       <ion-select (keyup)="ngValidar()" [(ngModel)]="novoProduto.tipo">
+        <ion-select-option value="agua">Agua</ion-select-option>
+        <ion-select-option value="cachaca">Cachaça</ion-select-option>
         <ion-select-option value="cerveja">Cerveja</ion-select-option>
+        <ion-select-option value="conhaque">Conhaque</ion-select-option>
+        <ion-select-option value="refrigerante">Regrigerante</ion-select-option>
         <ion-select-option value="whiske">Whiske</ion-select-option>
         <ion-select-option value="vilho">Vinho</ion-select-option>
-        <ion-select-option value="agua">Agua</ion-select-option>
+        <ion-select-option value="porcao">Porção</ion-select-option>
+        <ion-select-option value="outro">Outro</ion-select-option>
       </ion-select>
     </ion-item>
 
@@ -27,12 +32,23 @@
       <ion-input type="text" (keyup)="ngValidar()" [(ngModel)]="novoProduto.nome" ></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">ML <ion-text color="danger">*</ion-text></ion-label>
+      <ion-label position="floating">ML Produto<ion-text color="danger">*</ion-text></ion-label>
       <ion-input type="number" (keyup)="ngValidar()" [(ngModel)]="novoProduto.ml" ></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Valor <ion-text color="danger">*</ion-text></ion-label>
-      <ion-input  type="number" (keyup)="ngValidar()" [(ngModel)]="novoProduto.valor"></ion-input>
+      <ion-label>ML Dose <ion-text color="danger">*</ion-text></ion-label>
+      <ion-select  (keyup)="ngValidar()" [(ngModel)]="  novoProduto.mlDose">
+        <ion-select-option value="50">50 ML</ion-select-option>
+        <ion-select-option value="60">60 ML</ion-select-option>
+        <ion-select-option value="70">70 ML</ion-select-option>
+        <ion-select-option value="80">80 ML</ion-select-option>
+        <ion-select-option value="90">90 ML</ion-select-option>
+        <ion-select-option value="100">100 ML</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">% de lucro <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input  type="number" (keyup)="ngValidar()" [(ngModel)]="novoProduto.lucroDose"></ion-input>
     </ion-item>  
     <ion-item>
       <ion-label position="floating">Descrição</ion-label>

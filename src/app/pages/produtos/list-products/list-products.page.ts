@@ -44,6 +44,22 @@ export class ListProductsPage implements OnInit {
 
   }
 
+  valorDose(produto: Produto): Array<any>{
+    const  doses = produto.ml/parseInt(produto.mlDose);
+    const valorDose = produto.valor/doses;
+    const valorFinal = valorDose+(valorDose*(produto.lucroDose/100))
+    return [valorFinal,doses]
+  }
+
+  validaTipoDeBebida(produto: Produto){
+    let ret = true;
+    const tipo = produto.tipo;
+    if( (tipo == 'agua') || (tipo == 'refrigerante') ){
+      ret = false
+    }
+    return ret
+  }
+
   // async presentLoadin(){
   //   this.loading = await this.loadingController.create({ message: 'Carregando' });
   //   return this.loading.present();
@@ -68,6 +84,29 @@ export class ListProductsPage implements OnInit {
   async presentToast(message: string) {
     const toast = await this.toastController.create({ message, duration: 2000 });
     toast.present();
+  }
+
+  atualizarItems(){
+    this.produtosService.produtos.valueChanges().forEach(item => {
+          item.map((i)=>{
+            // this.produtosService.update(i);
+            // if(i.estoque == 12){
+              this.produtosService.update({
+                uid: i.uid,
+                codigo: i.codigo,
+                nome: i.nome,
+                tipo: i.tipo,
+                ml: i.ml,
+                mlDose: i.mlDose,
+                lucroDose: 100,
+                valor: i.valor,
+                descricao: i.descricao,
+                estoque: i.estoque,
+                dataCreate: i.dataCreate
+              });
+            // }
+          })   
+    });
   }
 
 }
