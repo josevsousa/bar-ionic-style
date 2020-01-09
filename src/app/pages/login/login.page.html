@@ -1,9 +1,23 @@
-<ion-content class="swiper-no-swiping">
+<ion-content fullscreen class="myContent">
  
-  <a (click)="login()" class="">
-    <ion-icon slot="icon-only" name="contact"></ion-icon>
-  </a>
   <!-- <img src="/assets/img/google.png"> -->
- 
+    
+  
+  <ion-card>
+    <img src="/assets/img/google.png"/>
+    <br>
+    <ion-button color="medium" id="loginBt" shape="round" expand="full" (click)="login()">
+      <ion-icon slot="start" name="key"></ion-icon>
+      login</ion-button>
+
+    <ion-card-header>
+      <ion-card-subtitle>Regras</ion-card-subtitle>
+      <ion-card-title>Bem vindo ao BarStyle</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Para utilizar o aplicativo de gestão do seu bar, é nescessario se logar com sua conta do gmail para seu controle pessoal!
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
 

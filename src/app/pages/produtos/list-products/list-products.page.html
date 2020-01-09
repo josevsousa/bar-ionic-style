@@ -14,7 +14,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content  fullscreen class="ion-padding">
   <!-- loadin -->
   <ion-list *ngIf="loadList">
     <ion-item *ngFor="let item of [0, 1, 2, 3, 4]">
@@ -61,11 +61,13 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-</ion-content>
 
-<ion-fab vertical="bottom" horizontal="end" slot="fixed">
-  <ion-fab-button [routerLink]="['/detalhes-products']">
-  <!-- <ion-fab-button (click)="atualizarItems()"> -->
-    <ion-icon name="add"></ion-icon>
-  </ion-fab-button>
-</ion-fab>
+
+  <ion-fab vertical="top" horizontal="end" slot="fixed" edge>
+    <ion-fab-button [routerLink]="['/detalhes-products']" >
+    <!-- <ion-fab-button (click)="atualizarItems()"> -->
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
