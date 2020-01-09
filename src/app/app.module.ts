@@ -17,11 +17,15 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 
 import { AuthService } from "./services/auth.service";
+import { ServiceWorkerModule } from '@angular/service-worker';
+
+import { AvatarComponent } from "./components/avatar/avatar.component";
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AvatarComponent
   ],
   entryComponents: [],
   imports: [
@@ -30,7 +34,8 @@ import { AuthService } from "./services/auth.service";
     AppRoutingModule,
     AngularFireModule.initializeApp( environment.firebaseConfig ),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     StatusBar,

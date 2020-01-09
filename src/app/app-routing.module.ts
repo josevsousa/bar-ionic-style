@@ -44,6 +44,11 @@ const routes: Routes = [
     path: 'detalhes-despesas',
     loadChildren: () => import('./pages/despesas/detalhes-despesas/detalhes-despesas.module').then( m => m.DetalhesDespesasPageModule),
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'mesa-start',
+    loadChildren: () => import('./pages/mesas/mesa-start/mesa-start.module').then( m => m.MesaStartPageModule),
+    canActivate: [AuthGuard]
   }
 ];
 

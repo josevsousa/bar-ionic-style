@@ -4,21 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ListDespesasPageRoutingModule } from './list-despesas-routing.module';
+import { MesaStartPageRoutingModule } from './mesa-start-routing.module';
 
-import { ListDespesasPage } from './list-despesas.page';
-
-
+import { MesaStartPage } from './mesa-start.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ListDespesasPageRoutingModule
+    MesaStartPageRoutingModule
   ],
-  declarations: [
-    ListDespesasPage
-  ]
+  declarations: [MesaStartPage]
 })
-export class ListDespesasPageModule {}
+export class MesaStartPageModule {}

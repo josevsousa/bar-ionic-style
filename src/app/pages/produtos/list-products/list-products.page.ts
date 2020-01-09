@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Produto } from "../../../interfaces/produto";
 import { ProdutosService } from 'src/app/services/produtos.service';
 import { ToastController } from "@ionic/angular";
@@ -17,6 +17,8 @@ export class ListProductsPage implements OnInit {
   totalProdutos: number;
   public loading: any;
   loadList: boolean = true;
+
+  tipoBebidaCss = "bebidasFrias";
  
   constructor(
       private produtosService: ProdutosService,
@@ -41,21 +43,23 @@ export class ListProductsPage implements OnInit {
     this.produtos$.forEach(data=>{
       this.totalProdutos =  data.length;
     })
-
   }
 
   valorDose(produto: Produto): Array<any>{
-    const  doses = produto.ml/parseInt(produto.mlDose);
+    const  doses = Math.floor(produto.ml/parseInt(produto.mlDose));
     const valorDose = produto.valor/doses;
     const valorFinal = valorDose+(valorDose*(produto.lucroDose/100))
-    return [valorFinal,doses]
+    return [valorFinal, doses]
   }
 
   validaTipoDeBebida(produto: Produto){
     let ret = true;
     const tipo = produto.tipo;
-    if( (tipo == 'agua') || (tipo == 'refrigerante') ){
+    if( (tipo == 'gelada') || (tipo == 'refrigerante') || (tipo == 'agua') || (tipo == 'suco') ){
+      this.tipoBebidaCss = "bebidasFrias";
       ret = false
+    }else{
+      this.tipoBebidaCss = "bebidasQuente";
     }
     return ret
   }
@@ -86,6 +90,7 @@ export class ListProductsPage implements OnInit {
     toast.present();
   }
 
+  // função para atualiar dados no firebase
   atualizarItems(){
     this.produtosService.produtos.valueChanges().forEach(item => {
           item.map((i)=>{
@@ -95,10 +100,10 @@ export class ListProductsPage implements OnInit {
                 uid: i.uid,
                 codigo: i.codigo,
                 nome: i.nome,
-                tipo: i.tipo,
+                tipo: 'quente',
                 ml: i.ml,
                 mlDose: i.mlDose,
-                lucroDose: 100,
+                lucroDose: i.lucroDose, // atetar esse valor em totos os registros
                 valor: i.valor,
                 descricao: i.descricao,
                 estoque: i.estoque,

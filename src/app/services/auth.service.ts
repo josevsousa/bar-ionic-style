@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/auth";
-import { User } from '../interfaces/user';
+import { AngularFirestore } from "@angular/fire/firestore";
+import { auth } from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -10,19 +11,27 @@ export class AuthService {
   user: any;
 
   constructor(
+    private db: AngularFirestore,
     private afs: AngularFireAuth
   ) {
     this.getAuthStatus();
    }
 
-  login(user: User){
-    return this.afs.auth.signInWithEmailAndPassword(user.email, user.password);
+   async login() {
+    try {
+      const user = await this.afs.auth.signInWithPopup(new auth.GoogleAuthProvider());
+      await   this.db.collection('users').doc(user.user.uid).set(
+        {
+          displayName: user.user.displayName,
+          email: user.user.email,
+          photoURL: user.user.photoURL,
+          uid: user.user.uid
+        }
+      );
+    } catch (error) {
+      console.log(error)
+    }
   }
-
-  register(user: User){
-    return this.afs.auth.createUserWithEmailAndPassword(user.email, user.password);
-  }
-
   logout(){
     return this.afs.auth.signOut();
   }

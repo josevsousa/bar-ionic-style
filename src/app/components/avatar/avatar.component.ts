@@ -10,7 +10,7 @@ import { AuthService } from "../../services/auth.service";
 export class AvatarComponent implements OnInit {
 
   constructor(
-    // private auth: AuthService
+    private auth: AuthService
   ) { }
 
   ngOnInit() {

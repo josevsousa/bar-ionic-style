@@ -42,10 +42,10 @@
     </ion-list-header> -->
     <!-- fim loading -->
     <ion-item-sliding *ngFor="let produto of produtos$ | async">
-      <ion-item>
+      <ion-item class="{{tipoBebidaCss}}">
         <ion-label>
           <!-- <h2><span class="codigo">{{produto.codigo}}</span> {{produto.nome}} {{produto.ml}}ML</h2> -->
-          <h2>{{produto.nome}} {{produto.ml}}ML</h2>
+          <h2><b>{{produto.nome | primeiraMaiuscula}} </b> {{produto.ml}}ML</h2>
           <h3>Valor Un: {{produto.valor | currency: 'BRL'}}</h3>
           <!-- <p>{{produto.descricao}}</p> -->
           <p *ngIf="validaTipoDeBebida(produto)">{{valorDose(produto)[1]}}-doses: {{valorDose(produto)[0]|currency: 'BRL'}} {{produto.mlDose}}ml {{produto.lucroDose}}%</p>

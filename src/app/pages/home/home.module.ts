@@ -8,7 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
 
-import { AvatarComponent } from "../../components/avatar/avatar.component";
+// import { AvatarComponent } from "../../components/avatar/avatar.component";
 
 @NgModule({
   imports: [
@@ -19,7 +19,7 @@ import { AvatarComponent } from "../../components/avatar/avatar.component";
   ],
   declarations: [
     HomePage,
-    AvatarComponent
+    // AvatarComponent
   ]
 })
 export class HomePageModule {}

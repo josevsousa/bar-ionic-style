@@ -29,61 +29,65 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  segmentChanged(event: any) {
-    if (event.detail.value === 'login') {
-      this.slides.slidePrev();
-      this.wavesPosition += this.wavesDifference;
-    } else {
-      this.slides.slideNext();
-      this.wavesPosition -= this.wavesDifference;
-    }
+  login(){
+    this.authService.login();
   }
 
-  async login(){
-    await this.presentLoading();
-    try {
-      await this.authService.login(this.userLogin);
-    } catch (error) {
-      console.log(error);
-      let  message = '';
-      if(error.code == 'auth/user-not-found'){
-        message = 'Usuário invalido'
-      }else{
-        message = error.message;
-      }
+  // segmentChanged(event: any) {
+  //   if (event.detail.value === 'login') {
+  //     this.slides.slidePrev();
+  //     this.wavesPosition += this.wavesDifference;
+  //   } else {
+  //     this.slides.slideNext();
+  //     this.wavesPosition -= this.wavesDifference;
+  //   }
+  // }
 
-      this.presentToast(message);
-    }finally{
-      this.loading.dismiss(); //tirar o loading da tela
-    }
-  }
+  // async login(){
+  //   await this.presentLoading();
+  //   try {
+  //     await this.authService.login(this.userLogin);
+  //   } catch (error) {
+  //     console.log(error);
+  //     let  message = '';
+  //     if(error.code == 'auth/user-not-found'){
+  //       message = 'Usuário invalido'
+  //     }else{
+  //       message = error.message;
+  //     }
 
-  async register(){
-    await this.presentLoading();
-    try {
-      await this.authService.register(this.userRegister);
-    } catch (error) {
-      console.log(error);
-      this.presentToast(error.message);
-    }finally{
-      this.loading.dismiss(); //tirar o loading da tela
-    }
-  }
+  //     this.presentToast(message);
+  //   }finally{
+  //     this.loading.dismiss(); //tirar o loading da tela
+  //   }
+  // }
 
-  async presentLoading() {
-    this.loading = await this.loadingController.create({
-      message: 'Por favor, aguarde...',
-      // duration: 2000
-    });
-    return this.loading.present();
-  }
+  // async register(){
+  //   await this.presentLoading();
+  //   try {
+  //     await this.authService.register(this.userRegister);
+  //   } catch (error) {
+  //     console.log(error);
+  //     this.presentToast(error.message);
+  //   }finally{
+  //     this.loading.dismiss(); //tirar o loading da tela
+  //   }
+  // }
 
-  async presentToast(message: string) {
-    const toast = await this.toastController.create({
-      message,
-      duration: 2000
-    });
-    toast.present();
-  }
+  // async presentLoading() {
+  //   this.loading = await this.loadingController.create({
+  //     message: 'Por favor, aguarde...',
+  //     // duration: 2000
+  //   });
+  //   return this.loading.present();
+  // }
+
+  // async presentToast(message: string) {
+  //   const toast = await this.toastController.create({
+  //     message,
+  //     duration: 2000
+  //   });
+  //   toast.present();
+  // }
 
 }

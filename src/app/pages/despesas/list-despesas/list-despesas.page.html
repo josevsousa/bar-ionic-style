@@ -35,7 +35,7 @@
   <ion-item-sliding *ngFor="let despesa of despesas$ | async">
     <ion-item>
       <ion-label>
-        <h2>{{ despesa.nome }}</h2>
+        <h2>{{ despesa.nome}}</h2>
         <h3>{{ despesa.valor | currency: 'BRL' }}</h3>
         <p>{{despesa.descricao}}</p>
       </ion-label>
